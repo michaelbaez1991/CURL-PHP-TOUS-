@@ -1,0 +1,275 @@
+/*
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2000-2016 hybris AG
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of hybris
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with hybris.
+ */
+
+html,body {
+	height: auto;
+	min-height: 100%
+}
+
+body {
+	background: #27394F;
+	padding: 0;
+}
+
+/*.z-page,
+.z-window-embedded,
+.z-window-embedded-cnt-noborder,
+.z-window-embedded-cnt,
+.z-window-embedded-cnt > div{
+	background: transparent !important;
+	border: none;
+}*/
+
+.z-page,
+.z-window-embedded,
+.z-window-content {
+    background: transparent !important;
+    border: none;
+
+}
+
+/*
+.z-window-embedded-cnt>div {
+	overflow: auto;
+}*/
+
+.z-window-content>div {
+    overflow: auto;
+}
+
+
+.clearfix {
+	*zoom: 1;
+}
+
+.clearfix:before,.clearfix:after {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.login_grid {
+	margin: 10% auto 20px;
+	padding-top: 150px;
+	background: url("images/logo_transparent.png") no-repeat transparent center top;
+	width: 316px;
+	padding-left: 6px;
+}
+
+.login_grid .z-grid {
+    border:none;
+}
+
+.login_grid form {
+	margin: 0 0 20px;
+}
+
+.login_grid label,.login_grid .z-label {
+	display: block;
+	margin-bottom: 5px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 30px;
+    height: 30px;
+    padding-right: 10px;
+	color: #fff;
+    width: 122px;
+}
+
+.login_grid .wrong_credentials_cnt .z-label {
+	width: auto;
+}
+
+.login_grid .z-checkbox-content {
+	margin: 3px 0 0 0;
+}
+
+.login_grid input[type="text"],
+.login_grid input[type="password"] {
+	width: 197px;
+	height: 28px;
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: none;
+	padding: 4px 6px;
+	margin-bottom: 9px;
+	color: #8A8FA3;
+	font-size: 14px;
+	background:  #3B4D6B;
+
+	border: 1px solid #3B4D6B;;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+
+	transition: border linear .3s;
+	-webkit-transition: border linear .3s;
+	-moz-transition: border linear .3s;
+	-o-transition: border linear .3s;
+}
+
+
+/* DOUBLE PADDING FIX - IE7 */
+*+html .login_grid input[type="text"],
+*+html .login_grid input[type="password"] {
+	height: 20px;
+}
+
+.login_grid input:focus,.login_grid select:focus {
+	color: #fff;
+	border: 1px solid #8a8fa3;
+}
+
+.login_grid select option {
+	background-color: #3B4D6B;
+}
+
+.login_grid select {
+	width: 197px;
+	height: 30px;
+	display: inline-block;
+	outline: none;
+	border: 1px solid #3B4D6B;;
+	padding: 4px 6px;
+	margin-bottom: 9px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	color: #8a8fa3;
+	font-size: 14px;
+	background: url(images/selectbox_arrow.png) no-repeat center right #3B4D6B;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+
+    transition: border .3s;
+    -webkit-transition: border .3s;
+    -moz-transition: border .3s;
+    -ms-transition: border .3s;
+}
+
+
+/* FIX FOR PADDING - IE7*/
+*+html .login_grid select{
+	height: 22px;
+}
+
+.login_grid button[type="submit"] {
+	display: inline-block;
+	min-width: 100px;
+	height: 28px;
+	border: none;
+	font-weight: bold;
+	font-size: 14px;
+	text-transform: uppercase;
+	margin-top: 16px;
+    margin-left: 220px;
+	color:#213260;
+	font-weight: 200;
+	background: #FCDF2B;
+
+	transition: background-color .3s;
+    -webkit-transition: background-color .3s;
+    -moz-transition: background-color .3s;
+    -ms-transition: background-color .3s;
+
+
+}
+
+.login_grid button[type="submit"]:hover {
+	background-image: none;
+	background-color: #f5c711;
+}
+
+.login_grid .z-spinner,
+.login_grid .z-doublespinner{
+	background: none;
+	width: 197px;
+}
+
+.login_grid .z-spinner-button,
+.login_grid .z-doublespinner-button{
+	background: #fff;
+	height: 26px;
+}
+
+.login_grid .z-spinner > input[type="text"],
+.login_grid .z-spinner > input[type="password"],
+.login_grid .z-doublespinner > input[type="text"],
+.login_grid .z-doublespinner > input[type="password"]{
+	width: 178px;
+}
+
+/* FIX FOR Z-SPINNER CAUSED BY PADDING BUG - IE7*/
+*+html .login_grid .z-spinner > input[type="text"],
+*+html .login_grid .z-spinner > input[type="password"],
+*+html .login_grid .z-doublespinner > input[type="text"],
+*+html .login_grid .z-doublespinner > input[type="password"]{
+	width: 164px;
+}
+
+
+.login_grid .z-spinner .z-spinner-button:hover {
+	background-color:#CEEBFB;
+}
+
+.login_grid .z-spinner .z-spinner-button-lower,
+.login_grid .z-doublespinner .z-doublespinner-button-lower,
+.login_grid .z-spinner .z-spinner-button:hover .z-spinner-button-lower,
+.login_grid  .z-doublespinner .z-doublespinner-button:hover .z-doublespinner-button-lower{
+	margin-top: 7px;
+}
+
+
+.login-checkbox {
+	margin: 15px 0 10px 0;
+	display: block;
+}
+
+.login-checkbox label,.login-checkbox input {
+	float: left;
+}
+
+.login-checkbox input {
+	margin-right: 10px;
+}
+
+.top_area .labelRowCnt{
+	width: 120px;
+}
+
+.top_area .compRowCnt{
+	width: 8em;
+}
+
+
+.wrong_credentials_cnt{
+	background: url("images/icon_status_error_white.png") no-repeat scroll 10px center #F16B46;
+    margin: 0 0 30px;
+    padding: 10px 10px 5px 35px;
+}
+
+.singlesignon_login_cell {
+	text-align: center;
+	vertical-align: middle;
+	height: 100px;
+}
+
+.singlesignon_login_cell a {
+	color: white;
+}
