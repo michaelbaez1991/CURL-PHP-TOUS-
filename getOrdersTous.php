@@ -9,25 +9,40 @@
 		$pass = $variables_entorno->getPass(); 
 		$host = $variables_entorno->getHost(); 
 		$portal = $variables_entorno->getPortal();
+	$hoy = getdate();
+	$fecha_actual = $hoy['mday'].' '.$hoy['month'].' '.$hoy['year'];
 
-	// $portal = 'TOUS';
-	// $host = "{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX"; //Host to connect
- // 	$user = "linio.kronotime@gmail.com";
-	// $pass = 'kronotime2017';
+	$parameters_search = 'UNSEEN SUBJECT "Ordenes tous" SINCE "'.$fecha_actual.'"';
         
     //Conexion
-
     	$inbox = imap_open($host, $user, $pass) or die ("No se puede conectar: ".imap_last_error());
 	 
 	//Busco todos los mensajes que coincidan con el asunto
-		$emails = imap_search($inbox, 'SUBJECT "Ordenes tous"');
+		$emails = imap_search($inbox, $parameters_search); //UNSEEN
+		
+		if ($emails[0] == 'false' OR $emails[0] == '' OR $emails[0] == NULL) {
+			echo 'No ha llegado ningun correo';
+			$to = 'michael.baez.mendoza1991@gmail.com; michael.baez@redpine.com.co; paola.pardo@kronotime.com';
+			$subject = 'Alerta!!! ORDENES TOUS';
+			$mensaje = 'No estan llegado la lista de ordenes pendientes de TOUS';
+			/***COMANDO PARA ENVIAR ARCHIVO*/
+			$sql = "EXEC msdb.dbo.sp_send_dbmail 
+					@profile_name = 'MailApiLinioProfile', 
+					@recipients = '".$to."', 
+					@body = '".$mensaje."', 
+					@subject = '".$subject."',
+					@file_attachments = NULL";
+			print_r($db->query($sql));
+		}else{
+			var_dump($emails);
+		}
 
 	//El ultimo q coincide
 	    $indice = 0;
 	    for ($index = 0; $index < count($emails); $index++) {
 	       $indice = $emails[$index];
 	    }
-	 
+	
 	//Si encuentra algún correo electrónico, repita cada correo electrónico
 		if($emails) {
 		    $count = 1;
@@ -40,7 +55,7 @@
 	        //Muestra la estructura de l correo
 	        	$structure = imap_fetchstructure($inbox, $indice);
 	 
-	        $attachments = array();
+	        	$attachments = array();
 	 
 	        //Si hay archivos adjuntos encontrados.        
 		        if(isset($structure->parts) && count($structure->parts)){
@@ -150,7 +165,7 @@
 	    $observciones = '';
 	    $telefono = '';
 
-	    //$nombre_archivo_descargado = "list.csv";
+	    $nombre_archivo_descargado = "list.csv";
 	    $fp = fopen($nombre_archivo_descargado, "r");
 	    $query = "DECLARE @xml XML = '<root>";
 	    $queryItems = "DECLARE @xml XML = '<root>";
@@ -364,5 +379,6 @@
 	    $consulta = $db->query($querySeparado);
 	    print_r($consulta);
     }
+
     unlink($nombre_archivo_descargado);
 ?>
